@@ -17,4 +17,18 @@ class PostServiceTest extends TestCase
         /** assert */
         $this->assertEquals($expected, $actual);
     }
+
+    /** @test */
+    public function 顯示奇數ID的Post()
+    {
+        /** arrange */
+        $expected = 5;
+        $target = App::make(PostService::class);
+
+        /** act */
+        $actual = $target->displayAllOddPosts();
+
+        /** assert */
+        $this->assertEquals($expected, $actual);
+    }
 }
