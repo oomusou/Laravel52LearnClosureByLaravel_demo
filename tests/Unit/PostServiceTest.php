@@ -31,4 +31,18 @@ class PostServiceTest extends TestCase
         /** assert */
         $this->assertEquals($expected, $actual);
     }
+
+    /** @test */
+    public function title全部改成Laravel()
+    {
+        /** arrange */
+        $expected = 10;
+        $target = App::make(PostService::class);
+
+        /** act */
+        $actual = $target->displayAllPostsWithLaravel();
+
+        /** assert */
+        $this->assertEquals($expected, $actual);
+    }
 }
