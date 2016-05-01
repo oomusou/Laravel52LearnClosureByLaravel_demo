@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Post;
 use App\Repositories\PostRepository;
+use Closure;
 
 class PostService
 {
@@ -38,11 +39,22 @@ class PostService
      */
     public function displayAllOddPosts()
     {
+        return $this->filterAllOddPosts(function (Post $post) {
+            return ($post->id % 2);
+        });
+    }
+
+    /**
+     * @param Closure $closure
+     * @return int
+     */
+    private function filterAllOddPosts(Closure $closure)
+    {
         $posts = $this->postRepository->getAllPosts();
         $cnt = 0;
 
         foreach ($posts as $post) {
-            if ($post->id % 2) {
+            if ($closure($post)) {
                 $cnt++;
                 $txt = "{$post->id} : {$post->title}" . PHP_EOL;
                 echo($txt);
