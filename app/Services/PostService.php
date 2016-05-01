@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Post;
 use App\Repositories\PostRepository;
+use Closure;
 
 class PostService
 {
@@ -25,14 +27,20 @@ class PostService
      */
     public function displayAllPosts()
     {
+        return $this->getAllPosts(function (Post $post) {
+            $txt = "{$post->id} : {$post->title}" . PHP_EOL;
+            echo($txt);
+        });
+    }
+
+    private function getAllPosts(Closure $closure)
+    {
         $posts = $this->postRepository->getAllPosts();
 
         foreach ($posts as $post) {
-            $txt = "{$post->id} : {$post->title}" . PHP_EOL;
-            echo($txt);
+            $closure($post);
         }
 
         return $posts->count();
     }
-
 }
