@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5f62ded6a4af16ed8523b588c9c66d8e",
-    "content-hash": "786de83331fd3d11b47f6da9353d361b",
+    "hash": "9ef3bb74bda6995fb66f6f815711b88a",
+    "content-hash": "5e8b201e92735daee8db0eb795bcb245",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2456,6 +2456,46 @@
                 "testing"
             ],
             "time": "2015-04-02 19:54:00"
+        },
+        {
+            "name": "mpociot/laravel-test-factory-helper",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mpociot/laravel-test-factory-helper.git",
+                "reference": "4b08e2ceb9638dbddc4ca8d2196043c27022c366"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mpociot/laravel-test-factory-helper/zipball/4b08e2ceb9638dbddc4ca8d2196043c27022c366",
+                "reference": "4b08e2ceb9638dbddc4ca8d2196043c27022c366",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "~2.3",
+                "illuminate/console": "5.0.x|5.1.x|5.2.x",
+                "illuminate/filesystem": "5.0.x|5.1.x|5.2.x",
+                "illuminate/support": "5.0.x|5.1.x|5.2.x",
+                "php": ">=5.4.0",
+                "symfony/class-loader": "~2.3|~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mpociot\\LaravelTestFactoryHelper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Generate Laravel test factories from your existing models",
+            "keywords": [
+                "factory",
+                "laravel",
+                "tests"
+            ],
+            "time": "2016-04-02 20:31:43"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
