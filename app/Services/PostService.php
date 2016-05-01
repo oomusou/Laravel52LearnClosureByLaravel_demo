@@ -32,4 +32,23 @@ class PostService
                 echo($txt);
             })->count();
     }
+
+    /**
+     * @return int
+     */
+    public function displayAllOddPosts()
+    {
+        $posts = $this->postRepository->getAllPosts();
+        $cnt = 0;
+
+        foreach ($posts as $post) {
+            if ($post->id % 2) {
+                $cnt++;
+                $txt = "{$post->id} : {$post->title}" . PHP_EOL;
+                echo($txt);
+            }
+        }
+
+        return $cnt;
+    }
 }
