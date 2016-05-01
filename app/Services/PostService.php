@@ -39,28 +39,13 @@ class PostService
      */
     public function displayAllOddPosts()
     {
-        return $this->filterAllOddPosts(function (Post $post) {
-            return ($post->id % 2);
-        });
-    }
-
-    /**
-     * @param Closure $closure
-     * @return int
-     */
-    private function filterAllOddPosts(Closure $closure)
-    {
-        $posts = $this->postRepository->getAllPosts();
-        $cnt = 0;
-
-        foreach ($posts as $post) {
-            if ($closure($post)) {
-                $cnt++;
+        return $this->postRepository->getAllPosts()
+            ->filter(function ($value) {
+                return ($value->id % 2);
+            })
+            ->each(function (Post $post) {
                 $txt = "{$post->id} : {$post->title}" . PHP_EOL;
                 echo($txt);
-            }
-        }
-
-        return $cnt;
+            })->count();
     }
 }
