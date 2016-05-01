@@ -48,4 +48,20 @@ class PostService
                 echo($txt);
             })->count();
     }
+
+    /**
+     * @return int
+     */
+    public function displayAllPostsWithLaravel()
+    {
+        $posts = $this->postRepository->getAllPosts();
+
+        foreach ($posts as $post) {
+            $post->title = 'Laravel';
+            $txt = "{$post->id} : {$post->title}" . PHP_EOL;
+            echo($txt);
+        }
+
+        return $posts->count();
+    }
 }
