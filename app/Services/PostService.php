@@ -40,8 +40,8 @@ class PostService
     public function displayAllOddPosts()
     {
         return $this->postRepository->getAllPosts()
-            ->filter(function ($value) {
-                return ($value->id % 2);
+            ->filter(function (Post $post) {
+                return ($post->id % 2);
             })
             ->each(function (Post $post) {
                 $txt = "{$post->id} : {$post->title}" . PHP_EOL;
@@ -54,10 +54,21 @@ class PostService
      */
     public function displayAllPostsWithLaravel()
     {
+        return $this->replaceAllPostsWithLaravel(function (Post $post) {
+            $post->title = 'Laravel';
+        });
+    }
+
+    /**
+     * @param Closure $closure
+     * @return int
+     */
+    private function replaceAllPostsWithLaravel(Closure $closure)
+    {
         $posts = $this->postRepository->getAllPosts();
 
         foreach ($posts as $post) {
-            $post->title = 'Laravel';
+            $closure($post);
             $txt = "{$post->id} : {$post->title}" . PHP_EOL;
             echo($txt);
         }
