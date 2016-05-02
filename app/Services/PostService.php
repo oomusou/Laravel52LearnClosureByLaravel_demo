@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Post;
 use App\Repositories\PostRepository;
-use Closure;
 
 class PostService
 {
@@ -54,25 +53,14 @@ class PostService
      */
     public function displayAllPostsWithLaravel()
     {
-        return $this->replaceAllPostsWithLaravel(function (Post $post) {
-            $post->title = 'Laravel';
-        });
-    }
-
-    /**
-     * @param Closure $closure
-     * @return int
-     */
-    private function replaceAllPostsWithLaravel(Closure $closure)
-    {
-        $posts = $this->postRepository->getAllPosts();
-
-        foreach ($posts as $post) {
-            $closure($post);
-            $txt = "{$post->id} : {$post->title}" . PHP_EOL;
-            echo($txt);
-        }
-
-        return $posts->count();
+        return $this->postRepository->getAllPosts()
+            ->each(function (Post $post) {
+                $post->title = 'Laravel';
+            })
+            ->each(function (Post $post) {
+                $txt = "{$post->id} : {$post->title}" . PHP_EOL;
+                echo($txt);
+            })
+            ->count();
     }
 }
